@@ -57,7 +57,7 @@
 -      try {
 +      if(mJSEngine == JSEngine.V8) {
 +        return new V8ExecutorFactory(appName, deviceName);
-+      } else if (mJSEngine == JSEngine.Hermes) {
++      } else {
          return new HermesExecutorFactory();
 -      } catch (UnsatisfiedLinkError hermesE) {
 -        // If we get here, either this is a JSC build, and of course
