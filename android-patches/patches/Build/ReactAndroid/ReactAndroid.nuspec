@@ -1,6 +1,6 @@
 --- "E:\\gh\\react-native-macos2\\ReactAndroid\\ReactAndroid.nuspec"	1969-12-31 16:00:00.000000000 -0800
-+++ "E:\\gh\\react-native-macos\\ReactAndroid\\ReactAndroid.nuspec"	2021-10-12 13:21:14.553071000 -0700
-@@ -0,0 +1,199 @@
++++ "E:\\gh\\react-native-macos\\ReactAndroid\\ReactAndroid.nuspec"	2021-10-12 19:48:38.934480100 -0700
+@@ -0,0 +1,200 @@
 +<?xml version="1.0" encoding="utf-8"?>
 +<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 +  <metadata>
@@ -197,6 +197,7 @@
 +    <file src="..\ReactCommon\cxxreact\**\*.h" target="inc\cxxreact"/>
 +    <file src="..\ReactCommon\jsi\**\*.h" target="inc\jsi"/>
 +    <file src="..\ReactCommon\yoga\yoga\**\*.h" target="inc\Yoga"/>
++    <file src="..\android\dependencies\**\*.*" target="dependencies"/>
 +  </files>
 +</package>
 +
