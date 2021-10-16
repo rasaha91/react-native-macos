@@ -1,6 +1,6 @@
 --- "E:\\gh\\react-native-macos2\\ReactAndroid\\ReactAndroid.nuspec"	1969-12-31 16:00:00.000000000 -0800
 +++ "E:\\gh\\react-native-macos\\ReactAndroid\\ReactAndroid.nuspec"	2021-10-16 13:47:24.356639200 -0700
-@@ -0,0 +1,243 @@
+@@ -0,0 +1,242 @@
 +<?xml version="1.0" encoding="utf-8"?>
 +<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 +  <metadata>
@@ -227,8 +227,7 @@
 +    <file src="build\tmp\buildReactNdkLib\local\arm64-v8a\libturbomodulejsijni.so" target="lib\droidarm64\unstripped"/>
 +    
 +    <!-- AAR and POM -->
-+    <file src="..\android\com\facebook\react\react-native\*\react-native-*.aar" target="lib"/>
-+    <file src="..\android\com\facebook\react\react-native\*\react-native-*.pom" target="lib"/>
++    <file src="..\android\**\*" target="maven"/>+
 +
 +    <!-- Headers, ideally we'd only exported the needed headers, not the complete list -->
 +    <file src=".\build\third-party-ndk\double-conversion\double-conversion\*.h" target="inc\double-conversion"/>
