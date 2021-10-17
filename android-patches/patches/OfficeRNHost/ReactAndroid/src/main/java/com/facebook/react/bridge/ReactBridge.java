@@ -21,7 +21,7 @@
 +    SoLoader.loadLibrary("fbjni");
 +    SoLoader.loadLibrary("yoga");
 +    SoLoader.loadLibrary("jsinspector");
-+    SoLoader.loadLibrary("libreactnativeutilsjni");
++    SoLoader.loadLibrary("reactnativeutilsjni");
 +
      SoLoader.loadLibrary("reactnativejni");
      ReactMarker.logMarker(ReactMarkerConstants.LOAD_REACT_NATIVE_SO_FILE_END);
