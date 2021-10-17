@@ -227,7 +227,7 @@
 +    <file src="build\tmp\buildReactNdkLib\local\arm64-v8a\libturbomodulejsijni.so" target="lib\droidarm64\unstripped"/>
 +    
 +    <!-- AAR and POM -->
-+    <file src="..\android\**\*" target="maven"/>+
++    <file src="..\android\**\*" target="maven"/>
 +
 +    <!-- Headers, ideally we'd only exported the needed headers, not the complete list -->
 +    <file src=".\build\third-party-ndk\double-conversion\double-conversion\*.h" target="inc\double-conversion"/>
