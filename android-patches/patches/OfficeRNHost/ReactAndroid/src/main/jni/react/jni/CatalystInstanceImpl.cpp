@@ -12,9 +12,17 @@
            CatalystInstanceImpl::handleMemoryPressure),
        makeNativeMethod(
            "getRuntimeExecutor", CatalystInstanceImpl::getRuntimeExecutor),
+<<<<<<< HEAD
 +      makeNativeMethod("getPointerOfInstancePointer", CatalystInstanceImpl::getPointerOfInstancePointer)
    });
  
+=======
++      makeNativeMethod("getPointerOfInstancePointer", CatalystInstanceImpl::getPointerOfInstancePointer),
+       makeNativeMethod(
+           "warnOnLegacyNativeModuleSystemUse",
+           CatalystInstanceImpl::warnOnLegacyNativeModuleSystemUse),
+@@ -143,6 +145,23 @@
+>>>>>>> 90501d6f25... Merge pull request #1000 from rasaha91/android-patches-fix
    JNativeRunnable::registerNatives();
  }
  
