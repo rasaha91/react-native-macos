@@ -56,7 +56,7 @@ jobs:
       - task: PipAuthenticate@1
         displayName: 'Pip Authenticate'
         inputs:
-          artifactFeeds: 'Office'
+          pythonDownloadServiceConnections: 'Office Python Index'
           onlyAddExtraIndex: true
 
       # Verify depenendencies can be enumerated and downloaded ..
