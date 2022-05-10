@@ -29,29 +29,29 @@ jobs:
         submodules: recursive # set to 'true' for a single level of submodules or 'recursive' to get submodules of submodules
         persistCredentials: false # set to 'true' to leave the OAuth token in the Git config after the initial fetch
 
-      - template: templates/android-build-office.yml
+      # - template: templates/android-build-office.yml
 
-      - task: CmdLine@2
-        displayName: Remove RNTesterApp.android.bundle
-        inputs:
-          script: rm -f ./packages/rn-tester/js/RNTesterApp.android.bundle
+      # - task: CmdLine@2
+      #   displayName: Remove RNTesterApp.android.bundle
+      #   inputs:
+      #     script: rm -f ./packages/rn-tester/js/RNTesterApp.android.bundle
 
-      - task: CmdLine@2
-        displayName: Create RNTester bundle
-        inputs:
-          script: node cli.js bundle --entry-file ./packages/rn-tester/js/RNTesterApp.android.js --bundle-output ./packages/rn-tester/js/RNTesterApp.android.bundle --platform android
+      # - task: CmdLine@2
+      #   displayName: Create RNTester bundle
+      #   inputs:
+      #     script: node cli.js bundle --entry-file ./packages/rn-tester/js/RNTesterApp.android.js --bundle-output ./packages/rn-tester/js/RNTesterApp.android.bundle --platform android
 
-      - task: CmdLine@2
-        displayName: gradlew installArchives
-        inputs:
-          script: REACT_NATIVE_BOOST_PATH=$(System.DefaultWorkingDirectory)/build_deps ./gradlew installArchives -Pparam="excludeLibs"
+      # - task: CmdLine@2
+      #   displayName: gradlew installArchives
+      #   inputs:
+      #     script: REACT_NATIVE_BOOST_PATH=$(System.DefaultWorkingDirectory)/build_deps ./gradlew installArchives -Pparam="excludeLibs"
 
-      - task: CmdLine@2
-        displayName: Build rn-tester
-        inputs:
-          script: REACT_NATIVE_BOOST_PATH=$(System.DefaultWorkingDirectory)/build_deps ./gradlew :packages:rn-tester:android:app:assemble
+      # - task: CmdLine@2
+      #   displayName: Build rn-tester
+      #   inputs:
+      #     script: REACT_NATIVE_BOOST_PATH=$(System.DefaultWorkingDirectory)/build_deps ./gradlew :packages:rn-tester:android:app:assemble
 
-      - template: templates/prep-android-nuget.yml
+      # - template: templates/prep-android-nuget.yml
 
       - task: PipAuthenticate@1
         displayName: 'Pip Authenticate'
@@ -66,26 +66,26 @@ jobs:
           script: sudo apt-get install python3-pip && pip3 install maven-dependency-utils && python3 .ado/downloadAndroidDependencies.py $(Build.SourcesDirectory) && tree $(Build.SourcesDirectory)/android
 
 
-      # Very similar to the default pack task .. but appends 'ndk21' to the nuget pack version
-      - task: CmdLine@2
-        displayName: 'Verify NuGet can be packed'
-        inputs:
-          script: NDK=ndk`cat ${ANDROID_SDK_ROOT}/ndk-bundle/source.properties 2>&1 | grep Pkg.Revision | awk '{ print $3}' | awk -F. '{ print $1 }'`; mono $(System.DefaultWorkingDirectory)/nuget-bin/nuget.exe pack $(System.DefaultWorkingDirectory)/ReactAndroid/ReactAndroid.nuspec -OutputDirectory $(Build.StagingDirectory)/final -Properties buildNumber=$(buildNumber)-$NDK;commitId=$(Build.SourceVersion)
+      # # Very similar to the default pack task .. but appends 'ndk21' to the nuget pack version
+      # - task: CmdLine@2
+      #   displayName: 'Verify NuGet can be packed'
+      #   inputs:
+      #     script: NDK=ndk`cat ${ANDROID_SDK_ROOT}/ndk-bundle/source.properties 2>&1 | grep Pkg.Revision | awk '{ print $3}' | awk -F. '{ print $1 }'`; mono $(System.DefaultWorkingDirectory)/nuget-bin/nuget.exe pack $(System.DefaultWorkingDirectory)/ReactAndroid/ReactAndroid.nuspec -OutputDirectory $(Build.StagingDirectory)/final -Properties buildNumber=$(buildNumber)-$NDK;commitId=$(Build.SourceVersion)
 
-      # Android CI doesn't create a nuget now, but this check is failing builds. Quickest fix to unblock builds is to disable the check... but we need to find the root cause and fix it and enable this again.
-      # - script: '[ -f $(System.DefaultWorkingDirectory)/*.nupkg ]'
-      #   displayName: Verify that NuGet was actually created
+      # # Android CI doesn't create a nuget now, but this check is failing builds. Quickest fix to unblock builds is to disable the check... but we need to find the root cause and fix it and enable this again.
+      # # - script: '[ -f $(System.DefaultWorkingDirectory)/*.nupkg ]'
+      # #   displayName: Verify that NuGet was actually created
 
-      - task: CmdLine@2
-        displayName: 'Npm pack'
-        inputs:
-          script: node .ado/npmOfficePack.js --fake
-        env:
-          BUILD_STAGINGDIRECTORY: $(Build.StagingDirectory)
-          BUILD_SOURCESDIRECTORY: $(Build.SourcesDirectory)
-          BUILD_SOURCEBRANCH: $(Build.SourceBranch)
-          SYSTEM_ACCESSTOKEN: $(System.AccessToken)
-          githubApiToken: $(githubAuthToken)
+      # - task: CmdLine@2
+      #   displayName: 'Npm pack'
+      #   inputs:
+      #     script: node .ado/npmOfficePack.js --fake
+      #   env:
+      #     BUILD_STAGINGDIRECTORY: $(Build.StagingDirectory)
+      #     BUILD_SOURCESDIRECTORY: $(Build.SourcesDirectory)
+      #     BUILD_SOURCEBRANCH: $(Build.SourceBranch)
+      #     SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+      #     githubApiToken: $(githubAuthToken)
 
 #     In RN64 "clean" task tries to run the build again. It is reproing in 0.64-stable branch but fixed in 0.65-stable.
 #     I can't zero on the exact cause .. but turns out the issue is with rntester clean task.
