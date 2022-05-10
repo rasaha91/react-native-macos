@@ -56,7 +56,7 @@ jobs:
       - task: PipAuthenticate@1
         displayName: 'Pip Authenticate'
         inputs:
-          artifactFeeds: 'Office'
+          artifactFeeds: 'react-native'
           onlyAddExtraIndex: true
 
       # Verify depenendencies can be enumerated and downloaded ..
