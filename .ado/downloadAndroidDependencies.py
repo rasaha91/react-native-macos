@@ -125,6 +125,7 @@ def get_dependencies(react_native_dir):
     else:
         logging.error('Failed to get dependencies. Printing gradle output: ')
         logging.error(result.stderr.decode('utf-8'))
+        print(result.stderr.decode('utf-8'))
         exit(1)
 
 def main():
