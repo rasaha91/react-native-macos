@@ -163,7 +163,7 @@ def main():
     ensure_output_dir(dependency_dir_root) 
 
     dependencies = get_dependencies(react_native_dir);
-    maven_dependency_utils.download_transitive_closure(dependencies, dependency_dir_maven)
+    maven_dependency_utils.download_transitive_closure(dependencies, dependency_dir_maven, 'gradlew')
 
     # Extract the native libraries from maven packages
     extract_sos(dependency_dir_maven, dependency_dir_native)
