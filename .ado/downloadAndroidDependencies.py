@@ -119,7 +119,7 @@ def extract_sos(maven_dir, native_dir):
 
 ## Returns a list of strings, where the strings correspond to standard maven artifacts, i.e. groupId:artifactId:version
 def get_dependencies(react_native_dir):
-    result = subprocess.run(['./gradlew :ReactAndroid:dependencies --configuration api'], stderr=subprocess.PIPE, stdout=subprocess.PIPE, cwd=react_native_dir, shell=True)
+    result = subprocess.run('./gradlew :ReactAndroid:dependencies --configuration api', stderr=subprocess.PIPE, stdout=subprocess.PIPE, cwd=react_native_dir, shell=True)
     if (result.returncode == 0):
         return re.findall(r'^\S---\s+(\S*)', result.stdout.decode('utf-8'), re.MULTILINE)
     else:
@@ -141,6 +141,7 @@ def main():
             logging.info("Not a valid RN repo path!")
             exit(-1)
 
+    print("Checking for valid repo")
     if (not os.path.join(react_native_dir, "ReactAndroid", "build.gradle")):
         logging.info("Not a valid RN repo path!")
         exit(-1)
@@ -162,6 +163,7 @@ def main():
     # Ensure we have an output directory
     ensure_output_dir(dependency_dir_root) 
 
+    print("Getting dependencies")
     dependencies = get_dependencies(react_native_dir);
     maven_dependency_utils.download_transitive_closure(dependencies, dependency_dir_maven, 'gradlew')
 
