@@ -127,6 +127,7 @@ def get_dependencies(react_native_dir):
         logging.error(result.stderr.decode('utf-8'))
         exit(-1)
 
+# this is a test
 def main():
     if len(sys.argv) == 2:
         react_native_dir = sys.argv[1]
