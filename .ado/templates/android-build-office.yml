@@ -67,6 +67,11 @@ steps:
       script: node cli.js bundle --entry-file ./packages/rn-tester/js/RNTesterApp.android.js --bundle-output ./packages/rn-tester/js/RNTesterApp.android.bundle --platform android
 
   - task: CmdLine@2
+    displayName: print env
+    inputs:
+      script: printenv
+
+  - task: CmdLine@2
     displayName: print gradle props
     inputs:
       script: REACT_NATIVE_BOOST_PATH=$(System.DefaultWorkingDirectory)/build_deps ./gradlew properties
