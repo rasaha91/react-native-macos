@@ -67,6 +67,11 @@ steps:
       script: node cli.js bundle --entry-file ./packages/rn-tester/js/RNTesterApp.android.js --bundle-output ./packages/rn-tester/js/RNTesterApp.android.bundle --platform android
 
   - task: CmdLine@2
+    displayName: unset ndk
+    inputs:
+      script: unset ANDROID_NDK ANDROID_NDK_HOME ANDROID_NDK_ROOT
+
+  - task: CmdLine@2
     displayName: print env
     inputs:
       script: printenv
