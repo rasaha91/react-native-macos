@@ -14,7 +14,7 @@ LOCAL_SRC_FILES := $(subst $(LOCAL_PATH)/,,$(LOCAL_SRC_FILES))
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)
 
-LOCAL_CFLAGS += -fvisibility=hidden -fexceptions -frtti
+LOCAL_CFLAGS += -fvisibility=hidden -ffunction-sections -fdata-sections -fexceptions -frtti
 
 LOCAL_STATIC_LIBRARIES :=  libjsireact
 LOCAL_SHARED_LIBRARIES := \

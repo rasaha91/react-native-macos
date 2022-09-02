@@ -10,13 +10,17 @@
 #include <jsi/jsi.h>
 #include <react/renderer/runtimescheduler/RuntimeScheduler.h>
 
+#ifndef RN_EXPORT
+#define RN_EXPORT __attribute__((visibility("default")))
+#endif
+
 namespace facebook {
 namespace react {
 
 /*
  * Exposes RuntimeScheduler to JavaScript realm.
  */
-class RuntimeSchedulerBinding : public jsi::HostObject {
+class RN_EXPORT RuntimeSchedulerBinding : public jsi::HostObject {
  public:
   RuntimeSchedulerBinding(std::shared_ptr<RuntimeScheduler> runtimeScheduler);
 
@@ -34,7 +38,7 @@ class RuntimeSchedulerBinding : public jsi::HostObject {
    * Returns a shared pointer to RuntimeSchedulerBinding previously installed
    * into a runtime. Thread synchronization must be enforced externally.
    */
-  static std::shared_ptr<RuntimeSchedulerBinding> getBinding(
+   static std::shared_ptr<RuntimeSchedulerBinding> getBinding(
       jsi::Runtime &runtime);
 
   /*

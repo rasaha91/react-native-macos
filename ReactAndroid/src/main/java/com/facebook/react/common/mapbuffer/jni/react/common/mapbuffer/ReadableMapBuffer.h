@@ -13,6 +13,10 @@
 
 #include <fbjni/ByteBuffer.h>
 
+#ifndef RN_EXPORT
+#define RN_EXPORT __attribute__((visibility("default")))
+#endif
+
 namespace facebook {
 namespace react {
 
@@ -23,7 +27,7 @@ class ReadableMapBuffer : public jni::HybridClass<ReadableMapBuffer> {
 
   static void registerNatives();
 
-  static jni::local_ref<ReadableMapBuffer::jhybridobject> createWithContents(
+  RN_EXPORT static jni::local_ref<ReadableMapBuffer::jhybridobject> createWithContents(
       MapBuffer &&map);
 
   explicit ReadableMapBuffer(MapBuffer &&map);

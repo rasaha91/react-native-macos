@@ -10,6 +10,10 @@
 #include <ReactCommon/CallInvoker.h>
 #include <react/renderer/runtimescheduler/RuntimeScheduler.h>
 
+#ifndef RN_EXPORT
+#define RN_EXPORT __attribute__((visibility("default")))
+#endif
+
 namespace facebook {
 namespace react {
 
@@ -17,7 +21,7 @@ namespace react {
  * Exposes RuntimeScheduler to native modules. All calls invonked on JavaScript
  * queue from native modules will be funneled through RuntimeScheduler.
  */
-class RuntimeSchedulerCallInvoker : public CallInvoker {
+class RN_EXPORT RuntimeSchedulerCallInvoker : public CallInvoker {
  public:
   RuntimeSchedulerCallInvoker(std::weak_ptr<RuntimeScheduler> runtimeScheduler);
 
