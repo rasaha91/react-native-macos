@@ -15,11 +15,15 @@
 namespace facebook {
 namespace react {
 
+#ifndef RN_EXPORT
+#define RN_EXPORT __attribute__((visibility("default")))
+#endif
+
 class JReactMarker : public facebook::jni::JavaClass<JReactMarker> {
  public:
   static constexpr auto kJavaDescriptor =
       "Lcom/facebook/react/bridge/ReactMarker;";
-  static void setLogPerfMarkerIfNeeded();
+  RN_EXPORT static void setLogPerfMarkerIfNeeded();
 
  private:
   static void logMarker(const std::string &marker);

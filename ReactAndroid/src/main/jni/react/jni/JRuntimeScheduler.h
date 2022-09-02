@@ -13,12 +13,16 @@
 namespace facebook {
 namespace react {
 
+#ifndef RN_EXPORT
+#define RN_EXPORT __attribute__((visibility("default")))
+#endif
+
 class JRuntimeScheduler : public jni::HybridClass<JRuntimeScheduler> {
  public:
   static auto constexpr kJavaDescriptor =
       "Lcom/facebook/react/bridge/RuntimeScheduler;";
 
-  std::weak_ptr<RuntimeScheduler> get();
+  RN_EXPORT std::weak_ptr<RuntimeScheduler> get();
 
  private:
   friend HybridBase;

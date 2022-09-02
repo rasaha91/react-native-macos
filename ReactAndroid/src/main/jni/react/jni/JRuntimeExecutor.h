@@ -13,12 +13,16 @@
 namespace facebook {
 namespace react {
 
+#ifndef RN_EXPORT
+#define RN_EXPORT __attribute__((visibility("default")))
+#endif
+
 class JRuntimeExecutor : public jni::HybridClass<JRuntimeExecutor> {
  public:
   static auto constexpr kJavaDescriptor =
       "Lcom/facebook/react/bridge/RuntimeExecutor;";
 
-  RuntimeExecutor get();
+  RN_EXPORT RuntimeExecutor get();
 
  private:
   friend HybridBase;

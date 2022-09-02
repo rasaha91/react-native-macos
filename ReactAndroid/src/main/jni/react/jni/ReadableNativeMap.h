@@ -19,6 +19,10 @@
 namespace facebook {
 namespace react {
 
+#ifndef RN_EXPORT
+#define RN_EXPORT __attribute__((visibility("default")))
+#endif  
+
 struct WritableNativeMap;
 
 struct ReadableMap : jni::JavaClass<ReadableMap> {
@@ -39,7 +43,7 @@ struct ReadableNativeMap : jni::HybridClass<ReadableNativeMap, NativeMap> {
   jni::local_ref<jni::JArrayClass<jobject>> importValues();
   jni::local_ref<jni::JArrayClass<jobject>> importTypes();
   folly::Optional<folly::dynamic> keys_;
-  static jni::local_ref<jhybridobject> createWithContents(folly::dynamic &&map);
+  RN_EXPORT static jni::local_ref<jhybridobject> createWithContents(folly::dynamic &&map);
 
   static void mapException(const std::exception &ex);
 

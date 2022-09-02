@@ -10,7 +10,11 @@
 namespace facebook {
 namespace react {
 
-double reactAndroidNativePerformanceNowHook();
+#ifndef RN_EXPORT
+#define RN_EXPORT __attribute__((visibility("default")))
+#endif
+
+RN_EXPORT double reactAndroidNativePerformanceNowHook();
 
 } // namespace react
 } // namespace facebook
