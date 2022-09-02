@@ -12,6 +12,10 @@
 #include <react/renderer/componentregistry/ComponentDescriptorRegistry.h>
 #include "ComponentFactory.h"
 
+#ifndef RN_EXPORT
+#define RN_EXPORT __attribute__((visibility("default")))
+#endif
+
 namespace facebook {
 namespace react {
 
@@ -25,7 +29,7 @@ class CoreComponentsRegistry
 
   explicit CoreComponentsRegistry(ComponentFactory *delegate);
 
-  static std::shared_ptr<ComponentDescriptorProviderRegistry const>
+  RN_EXPORT static std::shared_ptr<ComponentDescriptorProviderRegistry const>
   sharedProviderRegistry();
 
  private:
